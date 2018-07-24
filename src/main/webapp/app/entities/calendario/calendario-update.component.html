@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-calendario-heading">Create or edit a Calendario</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!calendario.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="calendario.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codCalendario">Cod Calendario</label>
+                    <input type="text" class="form-control" name="codCalendario" id="field_codCalendario"
+                        [(ngModel)]="calendario.codCalendario" required/>
+                    <div [hidden]="!(editForm.controls.codCalendario?.dirty && editForm.controls.codCalendario?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.codCalendario?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_descCalendario">Desc Calendario</label>
+                    <input type="text" class="form-control" name="descCalendario" id="field_descCalendario"
+                        [(ngModel)]="calendario.descCalendario" required/>
+                    <div [hidden]="!(editForm.controls.descCalendario?.dirty && editForm.controls.descCalendario?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.descCalendario?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_anno">Anno</label>
+                    <input type="number" class="form-control" name="anno" id="field_anno"
+                        [(ngModel)]="calendario.anno" required/>
+                    <div [hidden]="!(editForm.controls.anno?.dirty && editForm.controls.anno?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.anno?.errors?.required">
+                        This field is required.
+                        </small>
+                        <small class="form-text text-danger"
+                            [hidden]="!editForm.controls.anno?.errors?.number">
+                            This field should be a number.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dataCalendario">Data Calendario</label>
+                    <div class="input-group">
+                        <input id="field_dataCalendario" type="text" class="form-control" name="dataCalendario" ngbDatepicker  #dataCalendarioDp="ngbDatepicker" [(ngModel)]="calendario.dataCalendario"
+                        />
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataCalendarioDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

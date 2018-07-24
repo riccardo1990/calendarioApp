@@ -1,0 +1,69 @@
+{
+    "name": "Evento",
+    "fields": [
+        {
+            "fieldName": "codEvento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "flagAutomatico",
+            "fieldType": "Boolean"
+        },
+        {
+            "fieldName": "dataDa",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "dataA",
+            "fieldType": "Instant",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoEvento",
+            "fieldType": "TipoEvento",
+            "fieldValues": "ALLOCATO,LIBERO,NON_ALLOCABILE,FESTIVITA,FERIE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "tipoGenerazioneEvento",
+            "fieldType": "TipoGenerazioneEvento",
+            "fieldValues": "AUTOMATICO,MANUALE",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "eventoRelPrenot",
+            "otherEntityName": "prenotazione",
+            "otherEntityField": "codPrenotazione"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "eventoRelCal",
+            "otherEntityName": "calendario",
+            "otherEntityField": "codCalendario"
+        }
+    ],
+    "changelogDate": "20180724165709",
+    "entityTableName": "evento",
+    "dto": "no",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

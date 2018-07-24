@@ -1,0 +1,59 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="evento">
+            <h2><span>Evento</span> {{evento.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cod Evento</span></dt>
+                <dd>
+                    <span>{{evento.codEvento}}</span>
+                </dd>
+                <dt><span>Flag Automatico</span></dt>
+                <dd>
+                    <span>{{evento.flagAutomatico}}</span>
+                </dd>
+                <dt><span>Data Da</span></dt>
+                <dd>
+                    <span>{{evento.dataDa}}</span>
+                </dd>
+                <dt><span>Data A</span></dt>
+                <dd>
+                    <span>{{evento.dataA}}</span>
+                </dd>
+                <dt><span>Tipo Evento</span></dt>
+                <dd>
+                    <span>{{evento.tipoEvento}}</span>
+                </dd>
+                <dt><span>Tipo Generazione Evento</span></dt>
+                <dd>
+                    <span>{{evento.tipoGenerazioneEvento}}</span>
+                </dd>
+                <dt><span>Evento Rel Prenot</span></dt>
+                <dd>
+                    <div *ngIf="evento.eventoRelPrenot">
+                        <a [routerLink]="['/prenotazione', evento.eventoRelPrenot?.id, 'view']">{{evento.eventoRelPrenot?.codPrenotazione}}</a>
+                    </div>
+                </dd>
+                <dt><span>Evento Rel Cal</span></dt>
+                <dd>
+                    <div *ngIf="evento.eventoRelCal">
+                        <a [routerLink]="['/calendario', evento.eventoRelCal?.id, 'view']">{{evento.eventoRelCal?.codCalendario}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/evento', evento.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

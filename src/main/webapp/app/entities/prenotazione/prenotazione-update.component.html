@@ -1,0 +1,72 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" #editForm="ngForm">
+            <h2 id="jhi-prenotazione-heading">Create or edit a Prenotazione</h2>
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+                <div class="form-group" [hidden]="!prenotazione.id">
+                    <label for="id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id"
+                        [(ngModel)]="prenotazione.id" readonly />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codPrenotazione">Cod Prenotazione</label>
+                    <input type="text" class="form-control" name="codPrenotazione" id="field_codPrenotazione"
+                        [(ngModel)]="prenotazione.codPrenotazione" required/>
+                    <div [hidden]="!(editForm.controls.codPrenotazione?.dirty && editForm.controls.codPrenotazione?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.codPrenotazione?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_dataPrenotazione">Data Prenotazione</label>
+                    <div class="input-group">
+                        <input id="field_dataPrenotazione" type="text" class="form-control" name="dataPrenotazione" ngbDatepicker  #dataPrenotazioneDp="ngbDatepicker" [(ngModel)]="prenotazione.dataPrenotazione"
+                        required/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="dataPrenotazioneDp.toggle()"><fa-icon [icon]="'calendar-alt'"></fa-icon></button>
+                        </span>
+                    </div>
+                    <div [hidden]="!(editForm.controls.dataPrenotazione?.dirty && editForm.controls.dataPrenotazione?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.dataPrenotazione?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_recapito">Recapito</label>
+                    <input type="text" class="form-control" name="recapito" id="field_recapito"
+                        [(ngModel)]="prenotazione.recapito" required/>
+                    <div [hidden]="!(editForm.controls.recapito?.dirty && editForm.controls.recapito?.invalid)">
+                        <small class="form-text text-danger"
+                        [hidden]="!editForm.controls.recapito?.errors?.required">
+                        This field is required.
+                        </small>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_note">Note</label>
+                    <input type="text" class="form-control" name="note" id="field_note"
+                        [(ngModel)]="prenotazione.note" />
+                </div>
+                <div class="form-group">
+                    <label class="form-control-label" for="field_codiceFiscaleExt">Codice Fiscale Ext</label>
+                    <input type="text" class="form-control" name="codiceFiscaleExt" id="field_codiceFiscaleExt"
+                        [(ngModel)]="prenotazione.codiceFiscaleExt" />
+                </div>
+
+            </div>
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary"  (click)="previousState()">
+                    <fa-icon [icon]="'ban'"></fa-icon>&nbsp;<span>Cancel</span>
+                </button>
+                <button type="submit" id="save-entity" [disabled]="editForm.form.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon [icon]="'save'"></fa-icon>&nbsp;<span>Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

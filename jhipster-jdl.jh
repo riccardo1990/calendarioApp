@@ -1,0 +1,42 @@
+
+entity Calendario{
+	codCalendario String required,
+    descCalendario String required,
+    anno Integer required,
+    dataCalendario LocalDate
+}
+
+entity Evento{
+	codEvento String required,
+    flagAutomatico Boolean ,
+    dataDa Instant required,
+    dataA Instant required,
+    tipoEvento TipoEvento required,
+    tipoGenerazioneEvento TipoGenerazioneEvento required
+}
+
+entity Prenotazione{
+	codPrenotazione String required,
+    dataPrenotazione LocalDate required,
+    recapito String required,
+    note String,
+    codiceFiscaleExt String //From account
+}
+
+relationship ManyToOne {
+	Evento{eventoRelPrenot(codPrenotazione)} to Prenotazione,
+    Evento{eventoRelCal(codCalendario)} to Calendario
+}
+
+
+enum TipoGenerazioneEvento {
+    AUTOMATICO, MANUALE
+}
+
+enum TipoEvento {
+    ALLOCATO, LIBERO, NON_ALLOCABILE, FESTIVITA, FERIE
+}
+
+
+
+paginate Calendario, Evento with infinite-scroll

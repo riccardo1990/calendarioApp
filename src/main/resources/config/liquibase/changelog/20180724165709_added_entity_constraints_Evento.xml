@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Evento.
+    -->
+    <changeSet id="20180724165709-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="evento_rel_prenot_id"
+                                 baseTableName="evento"
+                                 constraintName="fk_evento_evento_rel_prenot_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="prenotazione"/>
+
+        <addForeignKeyConstraint baseColumnNames="evento_rel_cal_id"
+                                 baseTableName="evento"
+                                 constraintName="fk_evento_evento_rel_cal_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="calendario"/>
+
+    </changeSet>
+</databaseChangeLog>

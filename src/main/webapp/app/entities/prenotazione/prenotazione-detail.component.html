@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="prenotazione">
+            <h2><span>Prenotazione</span> {{prenotazione.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cod Prenotazione</span></dt>
+                <dd>
+                    <span>{{prenotazione.codPrenotazione}}</span>
+                </dd>
+                <dt><span>Data Prenotazione</span></dt>
+                <dd>
+                    <span>{{prenotazione.dataPrenotazione}}</span>
+                </dd>
+                <dt><span>Recapito</span></dt>
+                <dd>
+                    <span>{{prenotazione.recapito}}</span>
+                </dd>
+                <dt><span>Note</span></dt>
+                <dd>
+                    <span>{{prenotazione.note}}</span>
+                </dd>
+                <dt><span>Codice Fiscale Ext</span></dt>
+                <dd>
+                    <span>{{prenotazione.codiceFiscaleExt}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/prenotazione', prenotazione.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>
